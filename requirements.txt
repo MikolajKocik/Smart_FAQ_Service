@@ -1,1 +1,5 @@
 sqlalchemy
+fastapi
+langchain
+pydantic
+dotenv
