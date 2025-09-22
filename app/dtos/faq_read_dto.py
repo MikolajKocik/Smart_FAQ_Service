@@ -3,7 +3,7 @@ from typing import Annotated
 
 class FaqRead(BaseModel):
     id: Annotated[int, Field(strict=True), WithJsonSchema()]
-    question: Annotated[str, Field(strict=True), WithJsonSchema()]
-    answer: Annotated[str, Field(strict=True), WithJsonSchema()]
- 
-    #@field_validator zrobic dla dto
+    question: Annotated[str, Field(min_length=1, max_length=500), WithJsonSchema()]
+    answer: Annotated[str, Field(min_length=1), WithJsonSchema()]
+
+
