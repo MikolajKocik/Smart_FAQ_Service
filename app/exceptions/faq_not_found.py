@@ -1,0 +1,2 @@
+class FaqNotFoundError(Exception):
+    pass
