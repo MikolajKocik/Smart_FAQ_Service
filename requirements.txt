@@ -3,3 +3,4 @@ fastapi
 langchain
 pydantic
 dotenv
+langchain_openai

@@ -1,0 +1,1 @@
+from ..repositories.faq_repository import FaqRepository

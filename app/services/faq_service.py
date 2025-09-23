@@ -40,12 +40,12 @@ class FaqService():
         return faq_modified
 
     async def faq_remove(self, faq_id: int) -> None:
-        faq_by_id = await self.repo.get_by_id(faq_id)
-        if not faq_by_id:
+        faq_to_remove = await self.repo.get_by_id(faq_id)
+        if not faq_to_remove:
             raise FaqNotFoundError(f"Faq not found with id:{faq_id}")
         
-        faq_to_remove = await self.repo.remove(faq_by_id)
+        await self.repo.remove(faq_to_remove)
         return None
    
-# AI
+
 # ask
