@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Field, WithJsonSchema
+from pydantic import BaseModel, Field
 from typing import Annotated
 
 class AskRequest(BaseModel):
-    question: Annotated[str, Field(strict=True), WithJsonSchema()]
+    question: Annotated[str, Field(strict=True)]
 
     
