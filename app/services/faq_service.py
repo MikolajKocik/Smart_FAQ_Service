@@ -22,7 +22,7 @@ class FaqService():
     async def get_faq(self, faq_id: int) -> FaqDomain:
         faq_by_id = await self.repo.get_by_id(faq_id)
         if not faq_by_id:
-            raise FaqNotFoundError(f"Faq not found with id:{faq_dto.id}")
+            raise FaqNotFoundError(f"Faq not found with id:{faq_id}")
 
         return faq_by_id
 
