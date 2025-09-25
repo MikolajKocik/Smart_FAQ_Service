@@ -19,8 +19,8 @@ class FaqService():
         created_faq = await self.repo.add(faq_domain)
         return created_faq
     
-    async def get_faq(self, faq_dto: FaqRead) -> FaqDomain:
-        faq_by_id = await self.repo.get_by_id(faq_dto.id)
+    async def get_faq(self, faq_id: int) -> FaqDomain:
+        faq_by_id = await self.repo.get_by_id(faq_id)
         if not faq_by_id:
             raise FaqNotFoundError(f"Faq not found with id:{faq_dto.id}")
 
@@ -46,6 +46,3 @@ class FaqService():
         
         await self.repo.remove(faq_to_remove)
         return None
-   
-
-# ask
