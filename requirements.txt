@@ -4,3 +4,4 @@ langchain
 pydantic
 dotenv
 langchain_openai
+asyncpg
