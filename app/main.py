@@ -1,9 +1,8 @@
 from contextlib import asynccontextmanager
-from fastapi.responses import Response
-from .db.schemas.common.Base import Base
-from .db.database import ASYNC_ENGINE, get_session
+from db.schemas.common.Base import Base
+from db.database import ASYNC_ENGINE, get_session
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..agent.ai_agent import ask_faq_agent
+from agent.ai_agent import ask_faq_agent
 from .dtos.ask_request_dto import AskRequest
 from .dtos.ask_response_dto import AskResponse
 from .dtos.faq_create_dto import FaqCreate
