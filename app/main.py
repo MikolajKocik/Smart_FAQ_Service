@@ -10,7 +10,7 @@ from app.dtos.faq_read_dto import FaqRead
 from app.services.faq_service import FaqService
 from app.repositories.faq_repository import FaqRepository
 import uvicorn
-from typing import List
+from typing import List, Optional
 from fastapi import (
     FastAPI, 
     HTTPException,
@@ -87,7 +87,7 @@ async def get_faq(faq_id: int, session: AsyncSession = Depends(get_session)) -> 
     
 
 @app.get("/faqs", status_code=status.HTTP_200_OK)
-async def get_faqs(session: AsyncSession = Depends(get_session)) -> List[FaqRead] | None:
+async def get_faqs(session: AsyncSession = Depends(get_session)) -> Optional[List[FaqRead]]:
     service = FaqService(FaqRepository(session))
     faqs = await service.get_faqs()
     return faqs
