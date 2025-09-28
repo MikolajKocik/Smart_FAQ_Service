@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Text
-from .common.Base import Base
+from app.db.schemas.common.Base import Base
 
 class FAQ(Base):
     __tablename__ = "faqs"

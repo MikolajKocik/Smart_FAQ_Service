@@ -1,1 +1,1 @@
-from .ai_agent import ask_faq_agent
+from agent.ai_agent import ask_faq_agent

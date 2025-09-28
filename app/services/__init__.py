@@ -1,1 +1,1 @@
-from ..services import faq_service, log_service
+from app.services import faq_service, log_service

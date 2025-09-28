@@ -1,1 +1,1 @@
-from ..repositories.faq_repository import FaqRepository
+from app.repositories.faq_repository import FaqRepository

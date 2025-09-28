@@ -1,1 +1,1 @@
-from ..exceptions.faq_not_found import FaqNotFoundError
+from app.exceptions.faq_not_found import FaqNotFoundError

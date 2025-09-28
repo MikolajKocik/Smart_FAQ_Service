@@ -1,1 +1,1 @@
-from ..models import ask, faq
+from app.models import ask, faq

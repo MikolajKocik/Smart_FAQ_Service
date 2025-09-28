@@ -1,1 +1,1 @@
-from .Base import Base
+from app.db.schemas.common.Base import Base

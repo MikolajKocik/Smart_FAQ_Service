@@ -1,14 +1,14 @@
 from contextlib import asynccontextmanager
-from .db.schemas.common.Base import Base
-from .db.database import ASYNC_ENGINE, get_session
+from app.db.schemas.common.Base import Base
+from app.db.database import ASYNC_ENGINE, get_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from agent.ai_agent import ask_faq_agent
-from .dtos.ask_request_dto import AskRequest
-from .dtos.ask_response_dto import AskResponse
-from .dtos.faq_create_dto import FaqCreate
-from .dtos.faq_read_dto import FaqRead
-from .services.faq_service import FaqService
-from .repositories.faq_repository import FaqRepository
+from app.dtos.ask_request_dto import AskRequest
+from app.dtos.ask_response_dto import AskResponse
+from app.dtos.faq_create_dto import FaqCreate
+from app.dtos.faq_read_dto import FaqRead
+from app.services.faq_service import FaqService
+from app.repositories.faq_repository import FaqRepository
 import uvicorn
 from typing import List
 from fastapi import (

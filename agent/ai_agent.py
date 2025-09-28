@@ -4,7 +4,7 @@ from langchain.schema.output_parser import StrOutputParser
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from dotenv import load_dotenv
-from ..app.db.schemas.faq import FAQ
+from app.db.schemas.faq import FAQ
 import os
 
 load_dotenv
