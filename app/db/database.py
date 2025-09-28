@@ -6,10 +6,17 @@ from typing import AsyncGenerator
 import os
 
 load_dotenv()
-POSTGRES_CONN=os.environ.get("POSTGRES_CONN")
-if POSTGRES_CONN is None:
-    raise ValueError("POSTGRES_CONN is empty")
+POSTGRES_PASSWORD=os.environ.get("POSTGRES_PASSWORD")
+POSTGRES_USER=os.environ.get("POSTGRES_USER")
+POSTGRES_HOST=os.environ.get("POSTGRES_HOST")
+POSTGRES_PORT=os.environ.get("POSTGRES_PORT")
+POSTGRES_NAME=os.environ.get("POSTGRES_NAME")
+
+if POSTGRES_PASSWORD is None:
+    raise ValueError("POSTGRES_PASSWORD is missing")
     
+POSTGRES_CONN=f"postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_NAME}"
+
 ASYNC_ENGINE=create_async_engine(POSTGRES_CONN)
 
 ASYNC_SESSION_LOCAL = async_sessionmaker(

@@ -1,0 +1,44 @@
+networks:
+  smart_net:
+    driver: bridge
+
+services:
+  app: 
+    build: 
+      context: .
+      dockerfile: ./app/dockerfile
+    container_name: smart_faq_service
+    ports:
+      - 8080:5000
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/home/myuser/logs
+    depends_on:
+      - postgresql
+    networks:
+      - smart_net
+    
+  postgresql:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - smart_net
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports: 
+    - 8082:8080
+    networks:
+      - smart_net
+
+volumes:
+  postgres_data:

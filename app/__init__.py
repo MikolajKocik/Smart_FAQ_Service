@@ -1,1 +1,1 @@
-from main import lifespan
+from .main import lifespan

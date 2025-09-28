@@ -1,1 +1,1 @@
-from ..common.Base import Base
+from .Base import Base
