@@ -1,0 +1,2 @@
+class FaqBadRequestError(Exception):
+    pass

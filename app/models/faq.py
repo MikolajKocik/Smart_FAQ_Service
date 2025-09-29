@@ -1,6 +1,6 @@
 class FaqDomain:
-    def __init__(self, id_: int, question: str, answer: str):
-        self.id = id_
+    def __init__(self, question: str, answer: str, id: int = None):
+        self.id = id
         self.question = question
         self.answer = answer
         

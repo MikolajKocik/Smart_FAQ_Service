@@ -9,6 +9,8 @@ from app.dtos.faq_create_dto import FaqCreate
 from app.dtos.faq_read_dto import FaqRead
 from app.services.faq_service import FaqService
 from app.repositories.faq_repository import FaqRepository
+from app.exceptions.faq_already_exists import FaqAlreadyExistsError
+from app.exceptions.faq_bad_request import FaqBadRequestError
 import uvicorn
 from typing import List, Optional
 from fastapi import (
@@ -63,10 +65,20 @@ async def add_faq(
         service = FaqService(FaqRepository(session))
         result = await service.create_faq(faq)
         return result
+    except FaqBadRequestError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
+    except FaqAlreadyExistsError as e:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=str(e)
+        )
     except HTTPException as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={str(e)}
+            detail=str(e)
         )
 
 
@@ -82,7 +94,7 @@ async def get_faq(faq_id: int, session: AsyncSession = Depends(get_session)) -> 
     except HTTPException as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={str(e)}
+            detail=str(e)
         )
     
 
@@ -108,7 +120,7 @@ async def update_faq(
     except HTTPException as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={str(e)}
+            detail=str(e)
         )
 
 @app.delete("/faqs/{id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -123,7 +135,7 @@ async def remove_faq(
     except HTTPException as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={str(e)}
+            detail=str(e)
         )
 
 

@@ -1,1 +1,3 @@
 from app.exceptions.faq_not_found import FaqNotFoundError
+from app.exceptions.faq_already_exists import FaqAlreadyExistsError
+from app.exceptions.faq_bad_request import FaqBadRequestError

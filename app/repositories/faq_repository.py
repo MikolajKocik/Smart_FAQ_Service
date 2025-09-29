@@ -52,7 +52,6 @@ class FaqRepository:
         await self.session.refresh(faq_sql)
 
         return FaqDomain(
-            id_=faq_sql.id,
             question=faq_sql.question,
             answer=faq_sql.answer
         )   

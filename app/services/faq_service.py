@@ -1,8 +1,10 @@
-from ..repositories.faq_repository import FaqRepository
-from ..dtos.faq_create_dto import FaqCreate
-from ..dtos.faq_read_dto import FaqRead
-from ..models.faq import FaqDomain
-from ..exceptions.faq_not_found import FaqNotFoundError
+from app.repositories.faq_repository import FaqRepository
+from app.dtos.faq_create_dto import FaqCreate
+from app.dtos.faq_read_dto import FaqRead
+from app.models.faq import FaqDomain
+from app.exceptions.faq_not_found import FaqNotFoundError
+from app.exceptions.faq_already_exists import FaqAlreadyExistsError
+from app.exceptions.faq_bad_request import FaqBadRequestError
 from typing import List
 
 class FaqService():
@@ -12,9 +14,13 @@ class FaqService():
     async def create_faq(self, faq_dto: FaqCreate) -> FaqDomain:
         faq_by_question = await self.repo.get_by_question(faq_dto.question)
         if faq_by_question:
-            raise ValueError("FAQ with this question already exists.")
+            raise FaqAlreadyExistsError("FAQ with this question already exists.")
+        if faq_dto.question is None or faq_dto.question.strip() == "":
+            raise FaqBadRequestError("Question cannot be empty value")
+        if faq_dto.answer is None or faq_dto.answer.strip() == "":
+            raise FaqBadRequestError("Answer cannot be empty value")
         
-        faq_domain = FaqDomain(id_=None, question=faq_dto.question, answer=faq_dto.answer)
+        faq_domain = FaqDomain(question=faq_dto.question, answer=faq_dto.answer)
 
         created_faq = await self.repo.add(faq_domain)
         return created_faq
